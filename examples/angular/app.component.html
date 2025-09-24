@@ -1,0 +1,233 @@
+<div class="app">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <glass-morphism
+        [variant]="'dramatic'"
+        [ngStyle]="{
+          'padding': '40px',
+          'text-align': 'center',
+          'max-width': '600px',
+          'margin': '0 auto'
+        }"
+      >
+        <h1>Glass Morphism Showcase</h1>
+        <p>Beautiful Apple-inspired glass effects for React and Angular</p>
+        <glass-button
+          (click)="openModal()"
+          [ngStyle]="{ 'margin-top': '20px' }"
+        >
+          Open Modal
+        </glass-button>
+      </glass-morphism>
+    </div>
+  </section>
+
+  <!-- Variants Section -->
+  <section class="variants-section">
+    <div class="container">
+      <h2>Pre-configured Variants</h2>
+      <div class="variants-grid">
+        <glass-morphism-light
+          *ngFor="let variant of variants"
+          [key]="variant.variant"
+          [ngStyle]="{
+            'padding': '24px',
+            'text-align': 'center',
+            'cursor': 'pointer',
+            'transition': 'transform 0.3s ease'
+          }"
+          [ngClass]="selectedVariant === variant.variant ? 'selected' : ''"
+          (click)="selectVariant(variant.variant)"
+        >
+          <h3>{{ variant.name }}</h3>
+          <p>Click to select this variant</p>
+        </glass-morphism-light>
+      </div>
+    </div>
+  </section>
+
+  <!-- Presets Section -->
+  <section class="presets-section">
+    <div class="container">
+      <h2>Pre-built Presets</h2>
+      <div class="presets-grid">
+        <glass-card>
+          <h3>Glass Card</h3>
+          <p>Perfect for content cards with glass morphism effects.</p>
+          <glass-button [ngStyle]="{ 'margin-top': '16px' }">
+            Action Button
+          </glass-button>
+        </glass-card>
+
+        <glass-morphism
+          [preset]="'modal'"
+          [ngStyle]="{ 'max-width': '400px', 'margin': '0 auto' }"
+        >
+          <h3>Modal Preset</h3>
+          <p>Ready-to-use modal styling with glass effects.</p>
+          <div [ngStyle]="{ 'display': 'flex', 'gap': '12px', 'margin-top': '20px' }">
+            <glass-button>Cancel</glass-button>
+            <glass-button>Confirm</glass-button>
+          </div>
+        </glass-morphism>
+
+        <glass-morphism
+          [preset]="'tooltip'"
+          [ngStyle]="{ 'max-width': '250px', 'margin': '0 auto' }"
+        >
+          <h4>Tooltip Preset</h4>
+          <p>Lightweight tooltip with subtle glass effects.</p>
+        </glass-morphism>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Section -->
+  <section class="interactive-section">
+    <div class="container">
+      <h2>Interactive Examples</h2>
+      <div class="interactive-grid">
+        <glass-morphism
+          [variant]="selectedVariant"
+          [ngStyle]="{ 'padding': '24px' }"
+        >
+          <h3>Dynamic Variant</h3>
+          <p>This component changes based on the selected variant above.</p>
+          <p>Current variant: <strong>{{ selectedVariant }}</strong></p>
+        </glass-morphism>
+
+        <glass-morphism
+          [config]="customConfig"
+          [ngStyle]="{ 'padding': '24px' }"
+        >
+          <h3>Custom Configuration</h3>
+          <p>This card uses custom glass morphism configuration!</p>
+        </glass-morphism>
+
+        <glass-morphism
+          [config]="glassConfig"
+          [ngStyle]="{ 'padding': '24px' }"
+        >
+          <h3>Service Configuration</h3>
+          <p>This card uses the default service configuration.</p>
+        </glass-morphism>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section">
+    <div class="container">
+      <h2>Form Elements</h2>
+      <glass-morphism
+        [ngStyle]="{
+          'padding': '32px',
+          'max-width': '500px',
+          'margin': '0 auto'
+        }"
+      >
+        <h3>Contact Form</h3>
+        <form (ngSubmit)="onSubmit()">
+          <div [ngStyle]="{ 'margin-bottom': '20px' }">
+            <label [ngStyle]="{ 'display': 'block', 'margin-bottom': '8px' }">
+              Name
+            </label>
+            <glass-morphism
+              [preset]="'input'"
+              [ngStyle]="{ 'width': '100%' }"
+            >
+              <input
+                type="text"
+                placeholder="Enter your name"
+                [value]="inputValue"
+                (input)="onInputChange($event)"
+                [ngStyle]="{
+                  'width': '100%',
+                  'border': 'none',
+                  'background': 'transparent',
+                  'outline': 'none',
+                  'padding': '12px 16px',
+                  'font-size': '16px'
+                }"
+              />
+            </glass-morphism>
+          </div>
+          
+          <div [ngStyle]="{ 'margin-bottom': '20px' }">
+            <label [ngStyle]="{ 'display': 'block', 'margin-bottom': '8px' }">
+              Email
+            </label>
+            <glass-morphism
+              [preset]="'input'"
+              [ngStyle]="{ 'width': '100%' }"
+            >
+              <input
+                type="email"
+                placeholder="Enter your email"
+                [ngStyle]="{
+                  'width': '100%',
+                  'border': 'none',
+                  'background': 'transparent',
+                  'outline': 'none',
+                  'padding': '12px 16px',
+                  'font-size': '16px'
+                }"
+              />
+            </glass-morphism>
+          </div>
+          
+          <div [ngStyle]="{ 'margin-bottom': '20px' }">
+            <label [ngStyle]="{ 'display': 'block', 'margin-bottom': '8px' }">
+              Message
+            </label>
+            <glass-morphism
+              [preset]="'input'"
+              [ngStyle]="{ 'width': '100%' }"
+            >
+              <textarea
+                placeholder="Enter your message"
+                [ngStyle]="{
+                  'width': '100%',
+                  'border': 'none',
+                  'background': 'transparent',
+                  'outline': 'none',
+                  'padding': '12px 16px',
+                  'font-size': '16px',
+                  'min-height': '100px',
+                  'resize': 'vertical'
+                }"
+              ></textarea>
+            </glass-morphism>
+          </div>
+          
+          <glass-button type="submit">
+            Send Message
+          </glass-button>
+        </form>
+      </glass-morphism>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div 
+    *ngIf="showModal" 
+    class="modal-overlay" 
+    (click)="closeModal()"
+  >
+    <glass-modal
+      (click)="$event.stopPropagation()"
+      [ngStyle]="{ 'max-width': '500px', 'margin': '50px auto' }"
+    >
+      <h2>Glass Modal</h2>
+      <p>This is a beautiful glass morphism modal dialog!</p>
+      <p>Click outside to close or use the button below.</p>
+      <glass-button
+        (click)="closeModal()"
+        [ngStyle]="{ 'margin-top': '20px' }"
+      >
+        Close Modal
+      </glass-button>
+    </glass-modal>
+  </div>
+</div>
